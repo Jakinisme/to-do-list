@@ -1,0 +1,160 @@
+/* Content Page CSS for DailyDo To-Do List App */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f6f8fa;
+    color: #222;
+}
+
+.container-btnnav {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(80, 112, 255, 0.08);
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.content-btnnav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.btn-home img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    transition: transform 0.2s;
+}
+
+.btn-home:hover img {
+    transform: scale(1.1);
+}
+
+.search-task {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 8px;
+}
+
+.search-task img {
+    width: 28px;
+    height: 28px;
+}
+
+.search-task-input {
+    padding: 8px 16px;
+    border: 1px solid #b0b7c3;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+    margin-left: 4px;
+}
+
+.search-task-input:focus {
+    border: 1.5px solid #2575fc;
+}
+
+.container-nav {
+    margin: 32px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.content-nav {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(80, 112, 255, 0.08);
+    padding: 32px 48px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.title-nav h1 {
+    margin: 0 0 16px 0;
+    font-size: 2.2rem;
+    color: #2575fc;
+    letter-spacing: 1px;
+}
+
+.button-nav {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+    margin: 24px 0 0 0;
+    padding-top: 16px;
+    border-top: 1px solid #f0f2f7;
+}
+
+.button-nav button {
+    flex: 1 1 0;
+    min-width: 120px;
+    max-width: 180px;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(80, 112, 255, 0.12);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 8px;
+}
+
+.button-nav button:hover {
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.container-task {
+    margin: 40px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.content-task {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(80, 112, 255, 0.08);
+    padding: 32px 48px;
+    min-width: 320px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.task-list {
+    min-height: 120px;
+    /* Add your task item styles here */
+}
+
+@media (max-width: 600px) {
+    .content-nav, .content-task {
+        min-width: 90vw;
+        padding: 24px 8px;
+    }
+    .title-nav h1 {
+        font-size: 1.5rem;
+    }
+    .button-nav {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+    }
+    .button-nav button {
+        min-width: unset;
+        width: 100%;
+        max-width: unset;
+    }
+} 
