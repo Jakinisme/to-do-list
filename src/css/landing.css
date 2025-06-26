@@ -27,6 +27,12 @@ body {
     max-width: 600px;
     margin: 0 auto;
     color: #e0e7ff;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
 }
 
 .container-create, .container-list {

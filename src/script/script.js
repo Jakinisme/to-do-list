@@ -1,5 +1,5 @@
-let searchTask = document.getElementById('search-task-btn');
-let searchTaskInput = document.getElementById('search-task');
+const searchTask = document.getElementById('search-task-btn');
+const searchTaskInput = document.getElementById('search-task');
 
 const addTaskForm = document.getElementById('add-task-form');
 const newTaskInput = document.getElementById('new-task-input');
@@ -8,6 +8,7 @@ const taskListDiv = document.querySelector('.task-list');
 const closeModal = modal.querySelector('.close-modal');
 const saveDetailsBtn = modal.querySelector('#save-details');
 const cancelDetailsBtn = modal.querySelector('#cancel-details');
+
 let currentTaskIndex = -1;
 
 let isSearch = false
@@ -84,9 +85,6 @@ modal.innerHTML = `
     </div>
 `;
 document.body.appendChild(modal);
-
-// Modal functionality
-
 
 closeModal.addEventListener('click', () => {
     modal.style.display = 'none';
@@ -265,14 +263,13 @@ function renderTasks(filter = 'all', searchTerm = '') {
         delBtn.style.cursor = 'pointer';
         delBtn.style.fontSize = '0.85rem';
         delBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent triggering the detail view
+            e.stopPropagation();
             const originalIndex = tasks.indexOf(task);
             tasks.splice(originalIndex, 1);
             saveTasks();
             renderTasks(filter, searchTerm);
         });
         
-        // Add click event to show details
         taskDiv.addEventListener('click', () => {
             const originalIndex = tasks.indexOf(task);
             showTaskDetails(originalIndex);
@@ -314,5 +311,4 @@ document.getElementById('completed-task').addEventListener('click', () => {
     renderTasks('completed', searchTerm);
 });
 
-// Initial render
 renderTasks();
