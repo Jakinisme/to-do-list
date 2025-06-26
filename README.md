@@ -17,11 +17,10 @@ Built with only HTML, CSS, and JavaScript — no frameworks.
 
 📁 FILE STRUCTURE
 --------------------
-.
 ├── index.html             <- Main entry point
-├── style.css              <- Stylesheet
-├── script.js              <- JavaScript logic
 └── src/
+    └── script/  <- javascript logic
+    └── css/  <- Stylesheets
     └── page/
         └── (optional: additional HTML pages)
 
