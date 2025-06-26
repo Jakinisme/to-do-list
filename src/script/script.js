@@ -5,11 +5,6 @@ const addTaskForm = document.getElementById('add-task-form');
 const newTaskInput = document.getElementById('new-task-input');
 const taskListDiv = document.querySelector('.task-list');
 
-const modal = document.createElement('div');
-const closeModal = modal.querySelector('.close-modal');
-const saveDetailsBtn = modal.querySelector('#save-details');
-const cancelDetailsBtn = modal.querySelector('#cancel-details');
-
 let currentTaskIndex = -1;
 
 let isSearch = false
@@ -55,6 +50,7 @@ document.addEventListener('keydown', (e) => {
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+const modal = document.createElement('div');
 modal.className = 'task-modal';
 modal.innerHTML = `
     <div class="modal-content">
@@ -85,6 +81,10 @@ modal.innerHTML = `
     </div>
 `;
 document.body.appendChild(modal);
+
+const closeModal = modal.querySelector('.close-modal');
+const saveDetailsBtn = modal.querySelector('#save-details');
+const cancelDetailsBtn = modal.querySelector('#cancel-details');
 
 closeModal.addEventListener('click', () => {
     modal.style.display = 'none';
