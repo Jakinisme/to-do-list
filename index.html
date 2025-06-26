@@ -28,26 +28,6 @@
 
     <div class="madeby">jakinisme</div>
 
-    <script>
-    const descHeader = document.getElementById('desc-header')
-    const slogans = [
-        "Get things easily with DailyDo",
-        "Stay Focused. Stay Done.",
-        "Plan Less. Do More.",
-        "Your Day, Organized.",
-        "Don't Just Plan It. Do It."
-    ];
-    let currentSlogan = 0
-    
-    setInterval(() => {
-        descHeader.classList.add('fade-out');
-    
-        setTimeout(() => {
-            currentSlogan = (currentSlogan + 1) % slogans.length;
-            descHeader.innerHTML = slogans[currentSlogan];
-            descHeader.classList.remove('fade-out');
-        }, 500);
-    }, 5000);
-    </script>
+    <script src="src/script/script.js"></script>
 </body>
 </html>

@@ -9,6 +9,25 @@ let currentTaskIndex = -1;
 
 let isSearch = false
 
+const descHeader = document.getElementById('desc-header')
+const slogans = [
+        "Get things easily with DailyDo",
+        "Stay Focused. Stay Done.",
+        "Plan Less. Do More.",
+        "Your Day, Organized.",
+        "Don't Just Plan It. Do It."
+    ];
+let currentSlogan = 0
+setInterval(() => {
+    descHeader.classList.add('fade-out');
+
+    setTimeout(() => {
+        currentSlogan = (currentSlogan + 1) % slogans.length;
+        descHeader.innerHTML = slogans[currentSlogan];
+        descHeader.classList.remove('fade-out');
+        }, 500);
+    }, 5000);
+
 searchTask.addEventListener("click", () => {
     if (searchTaskInput.hidden === true && isSearch === false) {
         isSearch = true
