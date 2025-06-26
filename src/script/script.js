@@ -5,6 +5,7 @@ const addTaskForm = document.getElementById('add-task-form');
 const newTaskInput = document.getElementById('new-task-input');
 const taskListDiv = document.querySelector('.task-list');
 
+const modal = document.createElement('div');
 const closeModal = modal.querySelector('.close-modal');
 const saveDetailsBtn = modal.querySelector('#save-details');
 const cancelDetailsBtn = modal.querySelector('#cancel-details');
@@ -54,7 +55,6 @@ document.addEventListener('keydown', (e) => {
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-const modal = document.createElement('div');
 modal.className = 'task-modal';
 modal.innerHTML = `
     <div class="modal-content">
@@ -131,11 +131,9 @@ function renderTasks(filter = 'all', searchTerm = '') {
 
     let filteredTasks = tasks;
     
-    // Apply status filter first
     if (filter === 'active') filteredTasks = tasks.filter(t => !t.completed);
     if (filter === 'completed') filteredTasks = tasks.filter(t => t.completed);
     
-    // Then apply search filter
     if (searchTerm) {
         filteredTasks = filteredTasks.filter(task => {
             const taskText = task.text.toLowerCase();
@@ -144,7 +142,6 @@ function renderTasks(filter = 'all', searchTerm = '') {
         });
     }
     
-    // Show "no results" message if no tasks match
     if (filteredTasks.length === 0) {
         const noResultsDiv = document.createElement('div');
         noResultsDiv.className = 'no-results';
