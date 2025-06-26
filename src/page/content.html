@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
     <link rel="stylesheet" href="../css/content.css">
 </head>
 <body>
     <div class="container-btnnav">
         <div class="content-btnnav">
-            <div><a href="../index.html" class="btn-home"><img src="../img/home.png" alt="home"></a></div>
+            <div><a href="../../index.html" class="btn-home"><img src="../img/home.png" alt="home"></a></div>
             <div><button class="search-task" id="search-task-btn"><img src="../img/search.png" alt="search"></button>
                 <input type="text" placeholder="Search Task" id="search-task" class="search-task-input" hidden>
             </div>
@@ -32,8 +32,14 @@
 
     <div class="container-task">
         <div class="content-task">
+            <form id="add-task-form" style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <input type="text" id="new-task-input" placeholder="Add a new task" required style="flex: 1; padding: 8px;">
+                <button type="submit" id="add-task-btn">Add</button>
+            </form>
             <div class="task-list"></div>
         </div>
     </div>
+
+    <script src="../script/script.js"></script>
 </body>
 </html>
