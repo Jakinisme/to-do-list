@@ -352,4 +352,18 @@ body {
     .modal-actions button {
         width: 100%;
     }
+}
+
+.madeby {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: #b0b7c3;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    z-index: 100;
+    user-select: none;
+    pointer-events: none;
 } 
