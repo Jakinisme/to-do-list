@@ -11,13 +11,14 @@ let isSearch = false
 
 const descHeader = document.getElementById('desc-header')
 const slogans = [
-        "Get things easily with DailyDo",
+        "Get things easily with TuDoo",
         "Stay Focused. Stay Done.",
         "Plan Less. Do More.",
         "Your Day, Organized.",
         "Don't Just Plan It. Do It."
     ];
 let currentSlogan = 0
+
 setInterval(() => {
     descHeader.classList.add('fade-out');
 
