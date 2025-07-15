@@ -7,8 +7,6 @@ const taskListDiv = document.querySelector('.task-list');
 
 let currentTaskIndex = -1;
 
-let isSearch = false
-
 const descHeader = document.getElementById('desc-header')
 const slogans = [
         "Get things easily with TuDoo",
@@ -17,6 +15,7 @@ const slogans = [
         "Your Day, Organized.",
         "Don't Just Plan It. Do It."
     ];
+    
 let currentSlogan = 0
 
 setInterval(() => {
@@ -30,15 +29,13 @@ setInterval(() => {
     }, 5000);
 
 searchTask.addEventListener("click", () => {
-    if (searchTaskInput.hidden === true && isSearch === false) {
-        isSearch = true
-        searchTaskInput.hidden = false
+    searchTaskInput.hidden = !searchTaskInput.hidden;
+
+    if (!searchTaskInput.hidden) {
         searchTaskInput.focus();
     } else {
-        isSearch = false
-        searchTaskInput.hidden = true
         searchTaskInput.value = '';
-        renderTasks(); 
+        renderTasks();
     }
 })
 
