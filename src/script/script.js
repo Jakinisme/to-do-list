@@ -198,6 +198,35 @@ function renderTasks(filter = 'all', searchTerm = '') {
     }
     
     filteredTasks.forEach((task, idx) => {
+        // Create a wrapper for the checkbox
+        const checkboxWrapper = document.createElement('div');
+        checkboxWrapper.className = 'checkbox-wrapper';
+        checkboxWrapper.style.display = 'flex';
+        checkboxWrapper.style.alignItems = 'center';
+        checkboxWrapper.style.justifyContent = 'center';
+        checkboxWrapper.style.marginRight = '12px';
+        checkboxWrapper.style.height = '100%';
+        checkboxWrapper.style.cursor = 'pointer';
+
+        // Create the custom styled checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = task.completed;
+        checkbox.className = 'custom-checkbox';
+        checkbox.addEventListener('change', (e) => {
+            e.stopPropagation();
+            const originalIndex = tasks.indexOf(task);
+            tasks[originalIndex].completed = !tasks[originalIndex].completed;
+            saveTasks();
+            renderTasks(filter, searchTerm);
+        });
+        checkboxWrapper.appendChild(checkbox);
+        // Add a span for the custom checkmark
+        const checkmark = document.createElement('span');
+        checkmark.className = 'checkmark';
+        checkboxWrapper.appendChild(checkmark);
+
+        // Task item box
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-item';
         taskDiv.style.display = 'flex';
@@ -210,63 +239,47 @@ function renderTasks(filter = 'all', searchTerm = '') {
         taskDiv.style.backgroundColor = '#fff';
         taskDiv.style.cursor = 'pointer';
         taskDiv.style.transition = 'all 0.2s ease';
-        
+        taskDiv.style.flex = '1';
+
         taskDiv.addEventListener('mouseenter', () => {
             taskDiv.style.backgroundColor = '#f8f9fa';
             taskDiv.style.transform = 'translateY(-1px)';
             taskDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
         });
-        
         taskDiv.addEventListener('mouseleave', () => {
             taskDiv.style.backgroundColor = '#fff';
             taskDiv.style.transform = 'translateY(0)';
             taskDiv.style.boxShadow = 'none';
         });
-        
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = task.completed;
-        checkbox.style.marginRight = '8px';
-        checkbox.addEventListener('change', (e) => {
-            e.stopPropagation();
-            const originalIndex = tasks.indexOf(task);
-            tasks[originalIndex].completed = !tasks[originalIndex].completed;
-            saveTasks();
-            renderTasks(filter, searchTerm);
-        });
-        
+
         const taskContent = document.createElement('div');
         taskContent.style.flex = '1';
         taskContent.style.display = 'flex';
         taskContent.style.flexDirection = 'column';
         taskContent.style.gap = '4px';
-        
+
         const span = document.createElement('span');
         span.textContent = task.text;
         span.style.fontWeight = '500';
         if (task.completed) span.style.textDecoration = 'line-through';
         if (task.completed) span.style.color = '#6c757d';
-        
         if (searchTerm) {
             const regex = new RegExp(`(${searchTerm})`, 'gi');
             span.innerHTML = task.text.replace(regex, '<mark style="background-color: #fff3cd; padding: 1px 2px; border-radius: 3px;">$1</mark>');
         }
-        
         const descriptionPreview = document.createElement('span');
         const descriptionText = task.description ? task.description.substring(0, 50) + (task.description.length > 50 ? '...' : '') : 'No description';
         descriptionPreview.textContent = descriptionText;
         descriptionPreview.style.fontSize = '0.85rem';
         descriptionPreview.style.color = '#6c757d';
         descriptionPreview.style.fontStyle = 'italic';
-        
         if (searchTerm && task.description) {
             const regex = new RegExp(`(${searchTerm})`, 'gi');
             descriptionPreview.innerHTML = descriptionText.replace(regex, '<mark style="background-color: #fff3cd; padding: 1px 2px; border-radius: 3px;">$1</mark>');
         }
-        
         taskContent.appendChild(span);
         taskContent.appendChild(descriptionPreview);
-        
+
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
         delBtn.style.padding = '6px 12px';
@@ -283,16 +296,21 @@ function renderTasks(filter = 'all', searchTerm = '') {
             saveTasks();
             renderTasks(filter, searchTerm);
         });
-        
         taskDiv.addEventListener('click', () => {
             const originalIndex = tasks.indexOf(task);
             showTaskDetails(originalIndex);
         });
-        
-        taskDiv.appendChild(checkbox);
+
+        // Append in new order: checkbox outside the task item box
+        const rowDiv = document.createElement('div');
+        rowDiv.style.display = 'flex';
+        rowDiv.style.alignItems = 'stretch';
+        rowDiv.appendChild(checkboxWrapper);
+        rowDiv.appendChild(taskDiv);
+
         taskDiv.appendChild(taskContent);
         taskDiv.appendChild(delBtn);
-        taskListDiv.appendChild(taskDiv);
+        taskListDiv.appendChild(rowDiv);
     });
 }
 
